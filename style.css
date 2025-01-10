@@ -86,8 +86,8 @@ h6 {
 #header .profile img {
   margin: 15px auto;
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 100vh;
+  height: 200vh;
   border: 8px solid #2c2f3f;
 }
 
