@@ -86,8 +86,8 @@ h6 {
 #header .profile img {
   margin: 15px auto;
   display: block;
-  width: 10vh;/* change the vh to px -- doesnt change in thre git due to slow network */
-  height: 10vh;
+  width: 20vh;/* change the vh to px -- doesnt change in thre git due to slow network */
+  height: 20vh;
   border: 8px solid #2c2f3f;
 }
 
