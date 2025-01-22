@@ -1,4 +1,4 @@
-<!----script for contact --->
+<!----script for contact 
 	<script>
     function sendMessage() {
         // Assuming you'd send the form data to a server using AJAX.
