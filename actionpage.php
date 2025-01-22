@@ -1,28 +1,32 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $subject = $_POST["subject"];
-    $message = $_POST["message"];
+    // Sanitize and validate the input
+    $name = htmlspecialchars($_POST['name']);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $subject = htmlspecialchars($_POST['subject']);
+    $message = htmlspecialchars($_POST['message']);
 
-    // Perform basic form validation (you might want to add more validation)
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        // Handle validation error
-        http_response_code(400); // Bad Request
-        echo json_encode(array('error' => 'All fields are required.'));
-        exit();
+    // Validate the email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format";
+        exit;
     }
 
-    // Process the form data (you might want to do more here, e.g., send an email)
-    // For simplicity, we'll just return a success message
-    http_response_code(200); // OK
-    echo json_encode(array('message' => 'Your message has been sent. Thank you!'));
-    exit();
-} else {
-    // If the request method is not POST, handle it accordingly
-    http_response_code(405); // Method Not Allowed
-    echo json_encode(array('error' => 'Method Not Allowed'));
-    exit();
+    // Set the recipient email address
+    $to = "joeboy.patrick@gmail.com"; // Replace with your email
+
+    // Set the email subject and body
+    $email_subject = "Contact Form: " . $subject;
+    $email_body = "From: $name\nEmail: $email\nMessage: $message";
+
+    // Set the headers
+    $headers = "From: $email";
+
+    // Send the email
+    if (mail($to, $email_subject, $email_body, $headers)) {
+        echo "Message sent successfully!";
+    } else {
+        echo "Sorry, there was an error sending your message. Please try again later.";
+    }
 }
 ?>
