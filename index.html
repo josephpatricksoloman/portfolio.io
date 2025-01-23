@@ -27,9 +27,17 @@
   <!-- Template Main CSS File -->
   <link href="style.css" rel="stylesheet">
 
-  <!-- =======================================================
+  <!-- ======================== this is for email js =============================== -->
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+  (function(){emailjs.init({publicKey: "cJ_0-e6dYlW7YAaNe",});})();
+  </script>
+  <script src="script.js"></script>
+   
   
-  ======================================================== -->
+  <!-- =================================this is for email js ======================= -->
 </head>
 
 <body>
@@ -598,7 +606,7 @@
                 <h3>Matt Brandon</h3>
                 <h4>Freelancer</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>  End testimonial item -->
 
             <!--<div class="swiper-slide">
               <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
@@ -611,7 +619,7 @@
                 <h3>John Larson</h3>
                 <h4>Entrepreneur</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div> End testimonial item -->
 
           </div>
           <div class="swiper-pagination"></div>
@@ -657,7 +665,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="actionpage.php" method="post" role="form" class="php-email-form">
+            <form> <!-- action="actionpage.php" method="post" role="form" class="php-email-form" -->
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -681,7 +689,7 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" onclick="sendmail()">Send Message</button></div>
             </form>
           </div>
 
