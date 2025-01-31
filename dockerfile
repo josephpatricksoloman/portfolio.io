@@ -1,11 +1,14 @@
-# Use an official Nginx image from Docker Hub
+# Use an Nginx base image
 FROM nginx:latest
 
-# Copy the content of your local portfolio website into the Nginx web server's public directory
+# Remove default Nginx config
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your website files into the Nginx directory
 COPY . /usr/share/nginx/html
 
-# Expose the port that the server will listen on
+# Expose port 80
 EXPOSE 80
 
-# Start the Nginx server
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
