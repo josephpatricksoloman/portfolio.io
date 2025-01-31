@@ -11,4 +11,5 @@ COPY . /usr/share/nginx/html
 EXPOSE 80
 
 # Start Nginx
+#for testing purposes
 CMD ["nginx", "-g", "daemon off;"]
