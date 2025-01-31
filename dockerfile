@@ -1,5 +1,5 @@
 # Use an official Nginx image from Docker Hub
-FROM nginx:alpine
+FROM nginx:latest
 
 # Copy the content of your local portfolio website into the Nginx web server's public directory
 COPY . /usr/share/nginx/html
