@@ -1,15 +1,16 @@
-# Use an Nginx base image
+# Useing  Nginx base image
+# alphine odsent have bash
 FROM nginx:latest
 
-# Remove default Nginx config
+# Removeing default Nginx configuration file
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy your website files into the Nginx directory
+# Copying  files into the Nginx directory
 COPY . /usr/share/nginx/html
 
-# Expose port 80
+# Exposeing  port on  80
 EXPOSE 80
 
-# Start Nginx
+# Start Nginx and keep it running
 #for testing purposes
 CMD ["nginx", "-g", "daemon off;"]
