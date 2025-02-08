@@ -1,3 +1,32 @@
-# for future upgarde 
-
-# lets update
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh './build.sh'
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    
+                    withCredentials([usernamePassword(credentialsId: 'jose_dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        
+                        sh "echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin"
+                        
+                        def branch = env.GIT_BRANCH
+                        if (branch == 'origin/dev') {
+                            sh 'docker push josephpatricksoloman/iam:latest'
+                        } else if (branch == 'origin/main') {
+                            sh 'docker tag josephpatricksoloman/iam:latest josephpatricksoloman/prod:latest'
+                            sh 'docker push josephpatricksoloman/prod:latest'
+                        }
+                    }
+                }
+            }
+        }
+    }
+    triggers {
+        pollSCM('* * * * *') // Poll SCM every minute
+    }
+}
